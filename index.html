@@ -206,10 +206,37 @@
             });
 
             const icons = {
-                military: createIcon('✈️', '#e63946'),
-                civilian: createIcon('🛩️', '#63d471'),
-                mixed: createIcon('🚁', '#457b9d')
+                military: L.icon({
+                    iconUrl: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ed.png', // Red factory (use your own red factory icon if available)
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -28],
+                    className: 'military-factory-icon'
+                }),
+                civilian: L.icon({
+                    iconUrl: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ed.png', // Green factory (use your own green factory icon if available)
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -28],
+                    className: 'civilian-factory-icon'
+                }),
+                mixed: L.icon({
+                    iconUrl: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ed.png', // Blue factory (use your own blue factory icon if available)
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -28],
+                    className: 'mixed-factory-icon'
+                })
             };
+
+            // Optional: Colorize icons using CSS filters
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .military-factory-icon img { filter: hue-rotate(-30deg) saturate(2) brightness(0.9); } /* reddish */
+                .civilian-factory-icon img { filter: hue-rotate(90deg) saturate(2) brightness(1.1); } /* greenish */
+                .mixed-factory-icon img { filter: hue-rotate(200deg) saturate(2) brightness(1.1); } /* blueish */
+            `;
+            document.head.appendChild(style);
 
             const markers = L.markerClusterGroup();
             const listBody = document.querySelector("#airbase-list tbody");
